@@ -1,0 +1,32 @@
+---
+# file: test.yaml
+- name: Test that coordinator port is allocated
+  wait_for: host={{ ansible_ec2_local_ipv4|default(ansible_default_ipv4.address) }} port=8081
+            connect_timeout=10 state=started
+  when: druid_role == "coordinator" 
+
+- name: Test that overlord port is allocated
+  wait_for: host={{ ansible_ec2_local_ipv4|default(ansible_default_ipv4.address) }} port=8090
+            connect_timeout=10 state=started
+  when: druid_role == "overlord" 
+
+- name: Test that historical port is allocated
+  wait_for: host={{ ansible_ec2_public_ipv4|default(ansible_default_ipv4.address) }} port=8083
+            connect_timeout=10 state=started
+  when: druid_role == "historical" 
+
+- name: Test that broker port is allocated
+  wait_for: host={{ ansible_ec2_public_ipv4|default(ansible_default_ipv4.address) }} port=8082
+            connect_timeout=10 state=started
+  when: druid_role == "broker" 
+
+- name: Test that middleManager port is allocated
+  wait_for: host={{ ansible_ec2_local_ipv4|default(ansible_default_ipv4.address) }} port=8091
+            connect_timeout=10 state=started
+  when: druid_role == "middleManager" 
+
+- name: Test that realtime port is allocated
+  wait_for: host={{ ansible_ec2_public_ipv4|default(ansible_default_ipv4.address) }} port=8084
+            connect_timeout=10 state=started
+  when: druid_role == "realtime"
+

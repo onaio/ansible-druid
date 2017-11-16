@@ -1,0 +1,16 @@
+---
+# file: main.yaml
+
+# druid versions
+druid_version: 0.10.1
+druid_checksum: 3a32395305cc95c0cc351f2aa14de2f60ddd206ceb63e59a2b36bc96b98c421f
+
+# configuration
+druid_javascript_enabled: true
+druid_aws_s3_bucket: datawarehouse
+druid_aws_s3_baseKey: druid/segments
+
+# ports
+druid_broker_port: 8082
+druid_coordinator_port: 8081
+druid_overlord_port: 8090

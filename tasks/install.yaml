@@ -1,0 +1,91 @@
+---
+# file: install.yaml
+- name: Install htop
+  apt: name=htop update_cache=yes
+       state=present
+  become: yes
+
+- name: Install iotop
+  apt: name=iotop update_cache=yes
+       state=present
+  become: yes
+
+- name: Install nload
+  apt: name=nload update_cache=yes
+       state=present
+  become: yes
+
+- name: Create druid user
+  user:
+    name: "{{ druid_user }}"
+
+- name: Create druid deploy directory
+  file: path=/opt/druid state=directory mode=0777
+        owner={{ druid_user }}
+  become: yes
+
+- name: Create druid logging directory
+  file: path={{ druid_log_path }} state=directory mode=0777
+        owner={{ druid_user }}
+  become: yes
+
+- name: Create mnt/tmp dir only for historical middleManager and realtime nodes
+  file: path=/mnt/tmp state=directory mode=0755
+        owner={{ druid_user }}
+  become: yes
+  when: druid_role == "historical" or druid_role == "middleManager" or druid_role == "realtime"
+
+- name: Create mnt/persistent dir only for historical nodes
+  file: path=/mnt/persistent state=directory mode=0755
+        owner={{ druid_user }}
+  become: yes
+  when: druid_role == "historical"
+
+- name: Create mnt/persistent/zk_druid dir only for historical nodes
+  file: path=/mnt/persistent/zk_druid state=directory mode=0755
+        owner={{ druid_user }}
+  become: yes
+  when: druid_role == "historical"
+
+- name: Create mnt/druid dir only for middleManager nodes
+  file: path=/mnt/druid/ state=directory mode=0755
+        owner={{ druid_user }}
+  become: yes
+  when: druid_role == "middleManager"
+
+- name: Create mnt/druid/hadoop-tmp dir only for middleManager nodes
+  file: path=/mnt/druid/hadoop-tmp state=directory mode=0755
+        owner={{ druid_user }}
+  become: yes
+  when: druid_role == "middleManager"
+
+- name: Create mnt/druid/task dir only for middleManager nodes
+  file: path=/mnt/druid/task state=directory mode=0755
+        owner={{ druid_user }}
+  become: yes
+  when: druid_role == "middleManager"
+
+- name: Create mnt/druid/segment_cache dir only for middleManager nodes
+  file: path=/mnt/druid/segment_cache state=directory mode=0755
+        owner={{ druid_user }}
+  become: yes
+  when: druid_role == "middleManager"
+
+- name: Download Druid version {{ druid_version }}
+  get_url:
+    url: http://static.druid.io/artifacts/releases/druid-{{ druid_version }}-bin.tar.gz
+    dest: /opt/druid
+    checksum: sha256:{{ druid_checksum }}
+    mode: 0777
+
+- name: Un-tar druid download
+  unarchive:
+    src: /opt/druid/druid-{{ druid_version }}-bin.tar.gz
+    dest: /opt/druid/
+    copy: no
+    creates: /opt/druid/druid-{{ druid_version }}
+  become: yes
+
+- name: Change ownership of download path
+  file: path=/opt/druid owner={{ druid_user }} recurse=yes mode=0777
+  become: yes

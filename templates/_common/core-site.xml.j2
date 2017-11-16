@@ -1,0 +1,31 @@
+<configuration>
+  <property>
+    <name>fs.s3.impl</name>
+    <value>org.apache.hadoop.fs.s3native.NativeS3FileSystem</value>
+  </property>
+
+  <property>
+    <name>fs.s3n.impl</name>
+    <value>org.apache.hadoop.fs.s3native.NativeS3FileSystem</value>
+  </property>
+
+  <property>
+    <name>fs.s3.awsAccessKeyId</name>
+    <value>{{ dw_aws_access_key }}</value>
+  </property>
+
+  <property>
+    <name>fs.s3.awsSecretAccessKey</name>
+    <value>{{ dw_aws_secret_key }}</value>
+  </property>
+
+  <property>
+    <name>fs.s3n.awsAccessKeyId</name>
+    <value>{{ dw_aws_access_key }}</value>
+  </property>
+
+  <property>
+    <name>fs.s3n.awsSecretAccessKey</name>
+    <value>{{ dw_aws_secret_key }}</value>
+  </property>
+</configuration>

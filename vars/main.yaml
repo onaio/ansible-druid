@@ -1,0 +1,20 @@
+---
+# file: main.yaml
+
+# path and ownership
+druid_user: druid
+druid_path: "/opt/druid/druid-{{ druid_version }}/"
+druid_log_path: /var/log/druid
+
+# postgresql settings
+monit_protection: true
+postgresql_version: 9.3
+
+postgresql_databases:
+  - name: druid
+    owner: druid
+
+postgresql_users:
+  - name: druid
+    pass: "{{ vault_postgresql_users_druid_pass }}"
+    encrypted: no
