@@ -24,7 +24,7 @@
 # If you specify `druid.extensions.loadList=[]`, Druid won't load any extension from file system.
 # If you don't specify `druid.extensions.loadList`, Druid will load all the extensions under root extension directory.
 # More info: http://druid.io/docs/latest/operations/including-extensions.html
-druid.extensions.loadList=["druid-kafka-eight", "druid-s3-extensions", "druid-hdfs-storage", "druid-histogram", "druid-datasketches", "postgresql-metadata-storage", "druid-datasketches", "druid-histogram"]
+druid.extensions.loadList=["druid-kafka-eight", "druid-s3-extensions", "druid-hdfs-storage", "druid-histogram", "druid-datasketches", "postgresql-metadata-storage", "druid-datasketches", "druid-histogram", "druid-kafka-indexing-service"]
 druid.extensions.directory=/opt/druid/druid-{{ druid_version }}/extensions
 
 # Hadoop dependencies are bundled in the druid installation package
