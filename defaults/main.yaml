@@ -14,3 +14,7 @@ druid_aws_s3_baseKey: druid/segments
 druid_broker_port: 8082
 druid_coordinator_port: 8081
 druid_overlord_port: 8090
+
+# middle manager
+druid_mm_worker_capacity: 2
+druid_mm_java_opts_array: '["-server", "-Xmx8g", "-Xms4g", "-XX:+UseG1GC", "-XX:G1HeapRegionSize=16m", "-XX:MaxDirectMemorySize=10240g", "-XX:MaxGCPauseMillis=100", "-XX:+PrintGCDetails", "-XX:+PrintGCTimeStamps", "-XX:+PrintReferenceGC", "-XX:+PrintAdaptiveSizePolicy", "-XX:+ExitOnOutOfMemoryError", "-Duser.timezone=UTC", "-Dfile.encoding=UTF-8"]'
