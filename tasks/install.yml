@@ -1,5 +1,5 @@
 ---
-# file: install.yaml
+# file: install.yml
 - name: Install htop
   apt: name=htop update_cache=yes
        state=present

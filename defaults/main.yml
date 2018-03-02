@@ -1,5 +1,5 @@
 ---
-# file: main.yaml
+# file: main.yml
 
 # druid versions
 druid_version: 0.11.0

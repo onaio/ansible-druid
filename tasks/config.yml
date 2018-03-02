@@ -1,5 +1,5 @@
 ---
-# file: config.yaml
+# file: config.yml
 #
 # Druid configurations:
 - name: Copy common.properties for Druid node {{ druid_role }}

@@ -1,5 +1,5 @@
 ---
-# file: main.yaml
+# file: main.yml
 
 # path and ownership
 druid_user: druid
