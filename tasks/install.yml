@@ -20,12 +20,12 @@
     name: "{{ druid_user }}"
 
 - name: Create druid deploy directory
-  file: path=/opt/druid state=directory mode=0777
+  file: path=/opt/druid state=directory mode=0755
         owner={{ druid_user }}
   become: yes
 
 - name: Create druid logging directory
-  file: path={{ druid_log_path }} state=directory mode=0777
+  file: path={{ druid_log_path }} state=directory mode=0755
         owner={{ druid_user }}
   become: yes
 
@@ -87,5 +87,5 @@
   become: yes
 
 - name: Change ownership of download path
-  file: path=/opt/druid owner={{ druid_user }} recurse=yes mode=0777
+  file: path=/opt/druid owner={{ druid_user }} recurse=yes mode=0755
   become: yes
