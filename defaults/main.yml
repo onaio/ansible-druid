@@ -24,6 +24,11 @@ druid_broker_max_direct_size: 2g
 druid_coordinator_heap_size: 4g
 
 # historical
+druid_historical_num_http_threads: 10
+druid_historical_buffer_size: 250000000
+# number of cores - 1
+druid_historical_num_threads: 3
+druid_segment_maxsize: 300000000000
 druid_historical_heap_size: 4g
 druid_historical_max_new_size: 2g
 druid_historical_max_direct_size: 10g
