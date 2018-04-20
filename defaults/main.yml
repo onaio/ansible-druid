@@ -10,6 +10,19 @@ druid_javascript_enabled: true
 druid_aws_s3_bucket: datawarehouse
 druid_aws_s3_baseKey: druid/segments
 
+# extensions
+druid_default_extensions:
+  - druid-kafka-eight
+  - druid-s3-extensions
+  - druid-hdfs-storage
+  - druid-histogram
+  - druid-datasketches
+  - postgresql-metadata-storage
+  - druid-datasketches
+  - druid-histogram
+  - druid-kafka-indexing-service
+druid_extra_extensions:
+
 # ports
 druid_broker_port: 8082
 druid_coordinator_port: 8081
