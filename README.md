@@ -17,6 +17,7 @@ druid_community_extensions:
   - group_id: io.druid.extensions.contrib
     artifact_id: graphite-emitter
     version: 0.12.0
+```
 
 ### Ports
 
@@ -29,7 +30,6 @@ druid_overlord_port: 8090
 ```
 
 above are the defaults.
-
 
 ### Service memory and settings
 
@@ -71,4 +71,7 @@ Apache 2
 
 ## Authors
 
-[Ona Engineering](https://ona.io)
+[pld](https://github.com/pld)
+[moshthepitt](https://github.com/moshthepitt)
+
+This work is supported by [Ona](https://ona.io).
