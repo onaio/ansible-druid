@@ -89,3 +89,9 @@
 - name: Change ownership of download path
   file: path=/opt/druid owner={{ druid_user }} recurse=yes mode=0755
   become: yes
+
+- name: Download extensions with pull-deps
+  shell: 'java -classpath "/opt/druid/druid-{{ druid_version }}/lib/*" -Ddruid.extensions.directory=/opt/druid/druid-{{ druid_version }}/extensions -Ddruid.extensions.hadoopDependenciesDir=/opt/druid/druid-{{ druid_version }}/hadoop-dependencies io.druid.cli.Main tools pull-deps -c {{ item.group_id }}:{{ item.artifact_id }}:{{ item.version }}'
+  with_items: druid_community_extensions
+  when: druid_community_extensions
+  become: yes

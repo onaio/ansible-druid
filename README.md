@@ -8,6 +8,16 @@ An ansible role to install and configure druid.
 
 To modify the extensions set the variable `druid_extensions`.
 
+#### Community extensions
+
+Specify community extensions as
+
+```yml
+druid_community_extensions:
+  - group_id: io.druid.extensions.contrib
+    artifact_id: graphite-emitter
+    version: 0.12.0
+
 ### Ports
 
 Ports are defined by
