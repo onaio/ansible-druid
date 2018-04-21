@@ -6,9 +6,7 @@ An ansible role to install and configure druid.
 
 ### Extensions
 
-To modify the default extensions set the variable `druid_default_extensions`.
-
-If you are only interested in adding additional extensions you can add values to `druid_extra_extensions`.
+To modify the extensions set the variable `druid_extensions`.
 
 ### Ports
 

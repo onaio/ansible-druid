@@ -11,7 +11,7 @@ druid_aws_s3_bucket: datawarehouse
 druid_aws_s3_baseKey: druid/segments
 
 # extensions
-druid_default_extensions:
+druid_extensions:
   - druid-kafka-eight
   - druid-s3-extensions
   - druid-hdfs-storage
@@ -21,7 +21,6 @@ druid_default_extensions:
   - druid-datasketches
   - druid-histogram
   - druid-kafka-indexing-service
-druid_extra_extensions:
 
 # ports
 druid_broker_port: 8082
