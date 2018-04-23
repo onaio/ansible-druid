@@ -96,3 +96,16 @@ druid.emitter.logging.logLevel=info
 #
 
 druid.javascript.enabled={{ druid_javascript_enabled }}
+
+#
+# SQL
+#
+# Druid SQL is a built-in SQL layer and an alternative to Druid's native
+# JSON-based query language, and is powered by a parser and planner based on
+# Apache Calcite. Druid SQL translates SQL into native Druid queries on the
+# query broker (the first node you query), which are then passed down to data
+# nodes as native Druid queries. Other than the (slight) overhead of
+# translating SQL on the broker, there isn't an additional performance penalty
+# versus native queries.
+
+druid.sql.enable = {{ druid_sql_enabled }}

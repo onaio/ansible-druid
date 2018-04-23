@@ -10,6 +10,9 @@ druid_javascript_enabled: true
 druid_aws_s3_bucket: datawarehouse
 druid_aws_s3_baseKey: druid/segments
 
+# experimental features
+druid_sql_enabled: false
+
 # extensions
 druid_extensions:
   - druid-kafka-eight
