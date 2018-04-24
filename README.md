@@ -65,6 +65,64 @@ druid_overlord_max_new_size: 256m
 
 above are the defaults.
 
+### Logging Configuration
+
+You can configure the logging settings by setting the emitter and then
+providing a list of key value pairs to set configure values in the
+namespace `druid.emitter`.
+
+```yml
+druid_emitter: logging
+druid_emitter_configuration:
+  logging.logLevel=info
+```
+
+above are the defaults.
+
+You can also configure the monitors for each service with:
+
+```yml
+druid_common_monitoring_monitors:
+  io.druid.java.util.metrics.JvmMonitor
+druid_historical_monitoring_monitors:
+  io.druid.java.util.metrics.JvmMonitor
+  io.druid.server.metrics.HistoricalMetricsMonitor
+# set monitors on indexing peons
+druid_middlemanager_monitoring_monitors:
+  io.druid.java.util.metrics.JvmMonitor
+druid_realtime_monitoring_monitors:
+  io.druid.java.util.metrics.JvmMonitor
+  io.druid.segment.realtime.RealtimeMetricsMonitor
+# druid_broker_monitoring_monitors
+# druid_coordinator_monitoring_monitors
+# druid_overlord_monitoring_monitors
+```
+
+By default we do not set monitors on the `broker`, `coordinator`, or `overlord`.
+They inherit their monitors from common. Uncomment at add list items to their
+respective properties in order to specify their monitors.
+
+### Middle manager log storage
+
+Task logs
+
+```yml
+druid_indexer_logs_type: s3
+druid_indexer_logs_s3Bucket: aws-prod-druid-task-logs
+druid_indexer_logs_s3Prefix: prod/logs/v1
+```
+
+Peon storage
+
+```yml
+druid_middlemanager_indexer_storage_settings:
+  archiveBaseKey=prod
+  archiveBucket=aws-prod-druid-archive
+  baseKey=prod/v1
+  bucket=druid
+  type=s3
+```
+
 ## License
 
 Apache 2

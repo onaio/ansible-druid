@@ -25,7 +25,7 @@
 # If you don't specify `druid.extensions.loadList`, Druid will load all the extensions under root extension directory.
 # More info: http://druid.io/docs/latest/operations/including-extensions.html
 {% if druid_extensions is defined %}
-druid.extensions.loadList=[{% for extension in druid_extensions %}"{{ extension }}"{% if loop.index != loop.length %},{% endif %}{% endfor %}]
+druid.extensions.loadList=[{% for extension in druid_extensions %}"{{ extension }}"{% if loop.index != loop.length %}, {% endif %}{% endfor %}]
 druid.extensions.directory=/opt/druid/druid-{{ druid_version }}/extensions
 {% endif %}
 
@@ -87,9 +87,15 @@ druid.selectors.coordinator.serviceName=druid/coordinator
 # Monitoring
 #
 
-druid.monitoring.monitors=["com.metamx.metrics.JvmMonitor"]
-druid.emitter=logging
-druid.emitter.logging.logLevel=info
+{% if druid_common_monitoring_monitors %}
+druid.monitoring.monitors=[{% for monitor in druid_common_monitoring_monitors %}"{{ monitor }}"{% if loop.index != loop.length %}, {% endif %}{% endfor %}]
+{% endif %}
+druid.emitter={{ druid_emitter }}
+{% if druid_emitter_configuration %}
+{% for (key, value) in druid_emitter_configuration %} 
+druid.emitter.{{ key }}={{ value}}
+{% endfor %}
+{% endif %}
 
 #
 # JavaScript
