@@ -13,6 +13,23 @@ druid_aws_s3_baseKey: druid/segments
 # experimental features
 druid_sql_enabled: false
 
+# logging
+druid_emitter: logging
+druid_emitter_configuration:
+  logging.logLevel=info
+
+druid_common_monitoring_monitors:
+  - io.druid.java.util.metrics.JvmMonitor
+druid_historical_monitoring_monitors:
+  - io.druid.java.util.metrics.JvmMonitor
+  - io.druid.server.metrics.HistoricalMetricsMonitor
+# set monitors on indexing peons
+druid_middlemanager_monitoring_monitors:
+  - io.druid.java.util.metrics.JvmMonitor
+druid_realtime_monitoring_monitors:
+  - io.druid.java.util.metrics.JvmMonitor
+  - io.druid.segment.realtime.RealtimeMetricsMonitor
+
 # extensions
 druid_extensions:
   - druid-kafka-eight
@@ -51,6 +68,10 @@ druid_historical_max_direct_size: 10g
 # middle manager
 druid_mm_worker_capacity: 2
 druid_mm_java_opts_array: '["-server", "-Xmx8g", "-Xms4g", "-XX:+UseG1GC", "-XX:G1HeapRegionSize=16m", "-XX:MaxDirectMemorySize=10240g", "-XX:MaxGCPauseMillis=100", "-XX:+PrintGCDetails", "-XX:+PrintGCTimeStamps", "-XX:+PrintReferenceGC", "-XX:+PrintAdaptiveSizePolicy", "-XX:+ExitOnOutOfMemoryError", "-Duser.timezone=UTC", "-Dfile.encoding=UTF-8"]'
+druid_indexer_logs_type: file
+druid_indexer_logs_s3Bucket:
+druid_indexer_logs_s3Prefix:
+druid_indexer_worker_version: 0
 
 # overlord
 druid_overlord_heap_size: 4g
