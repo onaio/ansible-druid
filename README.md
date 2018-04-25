@@ -123,6 +123,12 @@ druid_middlemanager_indexer_storage_settings:
   type=s3
 ```
 
+### Additional JAR libraries
+
+```yml
+druid_install_sigar  # install the SIGAR library so Java can monitor CPU metrics
+```
+
 ## License
 
 Apache 2

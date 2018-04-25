@@ -103,3 +103,4 @@
     owner: "{{ druid_user }}"
     group: staff
     mode: 755
+  when: druid_install_sigar if defined and druid_install_sigar
