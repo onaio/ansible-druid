@@ -92,7 +92,7 @@ druid.monitoring.monitors=[{% for monitor in druid_common_monitoring_monitors %}
 {% endif %}
 druid.emitter={{ druid_emitter }}
 {% if druid_emitter_configuration %}
-{% for (key, value) in druid_emitter_configuration.item() %}druid.emitter.{{ key }}={{ value}}
+{% for (key, value) in druid_emitter_configuration.items() %}druid.emitter.{{ key }}={{ value}}
 {% endfor %}
 {% endif %}
 
