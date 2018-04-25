@@ -19,16 +19,16 @@ druid_emitter_configuration:
   logging.logLevel=info
 
 druid_common_monitoring_monitors:
-  io.druid.java.util.metrics.JvmMonitor
+  - io.druid.java.util.metrics.JvmMonitor
 druid_historical_monitoring_monitors:
-  io.druid.java.util.metrics.JvmMonitor
-  io.druid.server.metrics.HistoricalMetricsMonitor
+  - io.druid.java.util.metrics.JvmMonitor
+  - io.druid.server.metrics.HistoricalMetricsMonitor
 # set monitors on indexing peons
 druid_middlemanager_monitoring_monitors:
-  io.druid.java.util.metrics.JvmMonitor
+  - io.druid.java.util.metrics.JvmMonitor
 druid_realtime_monitoring_monitors:
-  io.druid.java.util.metrics.JvmMonitor
-  io.druid.segment.realtime.RealtimeMetricsMonitor
+  - io.druid.java.util.metrics.JvmMonitor
+  - io.druid.segment.realtime.RealtimeMetricsMonitor
 
 # extensions
 druid_extensions:
