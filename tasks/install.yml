@@ -97,8 +97,9 @@
   become: yes
 
 - name: Add SIGAR library
-  src: files/sigar-1.6.5.132.jar
-  dest: "{{ druid_path }}lib/sigar-1.6.5.132.jar"
-  owner: "{{ druid_user }}"
-  group: staff
-  mode: 755
+  copy:
+    src: files/sigar-1.6.5.132.jar
+    dest: "{{ druid_path }}lib/sigar-1.6.5.132.jar"
+    owner: "{{ druid_user }}"
+    group: staff
+    mode: 755
