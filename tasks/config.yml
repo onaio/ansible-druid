@@ -3,32 +3,32 @@
 #
 # Druid configurations:
 - name: Copy common.properties for Druid node {{ druid_role }}
-  template: src=_common/common.runtime.properties.j2 dest=/opt/druid/druid-{{ druid_version }}/conf/druid/_common/common.runtime.properties
+  template: src=_common/common.runtime.properties.j2 dest={{ druid_path }}conf/druid/_common/common.runtime.properties
         owner={{ druid_user }} mode=0755
   become: yes
 
 - name: Copy core-site.xml for Druid node {{ druid_role }}
-  template: src=_common/core-site.xml.j2 dest=/opt/druid/druid-{{ druid_version }}/conf/druid/_common/core-site.xml
+  template: src=_common/core-site.xml.j2 dest={{ druid_path }}conf/druid/_common/core-site.xml
         owner={{ druid_user }} mode=0755
   become: yes
 
 - name: Remove _common log4j2.xml file
   file:
     state: absent
-    path: /opt/druid/druid-{{ druid_version }}/conf/druid/_common/log4j2.xml
+    path: {{ druid_path }}conf/druid/_common/log4j2.xml
 
 - name: Copy log4j2.xml for Druid node {{ druid_role }}
-  template: src=_common/log4j2.xml.j2 dest=/opt/druid/druid-{{ druid_version }}/conf/druid/{{ druid_role }}/log4j2.xml
+  template: src=_common/log4j2.xml.j2 dest={{ druid_path }}conf/druid/{{ druid_role }}/log4j2.xml
         owner={{ druid_user }} mode=0755
   become: yes
 
 - name: Copy over specific configuration for Druid node {{ druid_role }}
-  template: src={{ druid_role }}/runtime.properties dest=/opt/druid/druid-{{ druid_version }}/conf/druid/{{ druid_role }}/
+  template: src={{ druid_role }}/runtime.properties dest={{ druid_path }}conf/druid/{{ druid_role }}/
         owner={{ druid_user }} mode=0755
   become: yes
 
 - name: Copy over jvm configuration for Druid node {{ druid_role }}
-  template: src={{ druid_role }}/jvm.config dest=/opt/druid/druid-{{ druid_version }}/conf/druid/{{ druid_role }}/
+  template: src={{ druid_role }}/jvm.config dest={{ druid_path }}conf/druid/{{ druid_role }}/
         owner={{ druid_user }} mode=0755
   become: yes
 
