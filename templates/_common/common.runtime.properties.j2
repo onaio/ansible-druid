@@ -87,7 +87,7 @@ druid.selectors.coordinator.serviceName=druid/coordinator
 # Monitoring
 #
 
-{% if druid_common_monitoring_monitors %}
+{% if druid_common_monitoring_monitors is defined %}
 druid.monitoring.monitors=[{% for monitor in druid_common_monitoring_monitors %}"{{ monitor }}"{% if loop.index != loop.length %}, {% endif %}{% endfor %}]
 {% endif %}
 druid.emitter={{ druid_emitter }}
