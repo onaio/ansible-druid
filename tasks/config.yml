@@ -31,6 +31,24 @@
     mode: 0755
   become: yes
 
+- block:
+  - name: Make sure the graphite emitter conf directory exists
+    file:
+      path: "{{ druid_path }}conf/druid/_common/emitter/graphite"
+      state: directory
+      owner: "{{ druid_user }}"
+      mode: 0755
+    become: yes
+
+  - name: Copy over the the graphite metric whitelist file
+    template:
+      src: "_common/emitter/graphite/metric-whitelist.json.j2"
+      dest: "{{ druid_path }}conf/druid/_common/emitter/graphite/metric-whitelist.json"
+      owner: "{{ druid_user }}"
+      mode: 0755
+    become: yes
+  when: druid_emitter == "graphite" and druid_emitter_graphite_metric_whitelist != ""
+
 - name: Copy over specific configuration for Druid node {{ druid_role }}
   template:
     src: "{{ druid_role }}/runtime.properties"

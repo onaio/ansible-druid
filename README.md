@@ -102,6 +102,14 @@ By default we do not set monitors on the `broker`, `coordinator`, or `overlord`.
 They inherit their monitors from common. Uncomment at add list items to their
 respective properties in order to specify their monitors.
 
+The [Graphite Emitter](http://druid.io/docs/latest/development/extensions-contrib/graphite.html) allows for specifying the list of metrics to be sent. Define this list in the `druid_common_graphite_metric_whitelist` variable. The list of available metrics can be found [here](https://github.com/druid-io/druid/blob/master/extensions-contrib/graphite-emitter/src/main/resources/defaultWhiteListMap.json).
+
+```yml
+druid_emitter_graphite_metric_whitelist: |
+  "jvm/gc": [],
+  "jvm/mem": []
+```
+
 ### Middle manager log storage
 
 Task logs

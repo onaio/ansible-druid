@@ -29,6 +29,7 @@ druid_middlemanager_monitoring_monitors:
 druid_realtime_monitoring_monitors:
   - io.druid.java.util.metrics.JvmMonitor
   - io.druid.segment.realtime.RealtimeMetricsMonitor
+druid_emitter_graphite_metric_whitelist: ""
 
 # extensions
 druid_extensions:
