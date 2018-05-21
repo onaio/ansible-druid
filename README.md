@@ -102,12 +102,28 @@ By default we do not set monitors on the `broker`, `coordinator`, or `overlord`.
 They inherit their monitors from common. Uncomment at add list items to their
 respective properties in order to specify their monitors.
 
-The [Graphite Emitter](http://druid.io/docs/latest/development/extensions-contrib/graphite.html) allows for specifying the list of metrics to be sent. Define this list in the `druid_common_graphite_metric_whitelist` variable. The list of available metrics can be found [here](https://github.com/druid-io/druid/blob/master/extensions-contrib/graphite-emitter/src/main/resources/defaultWhiteListMap.json).
+The [Graphite Emitter](http://druid.io/docs/latest/development/extensions-contrib/graphite.html) allows for specifying the list of metrics to be sent.
+Define this list in the `druid_emitter_graphite_whitelist` variable. The list of
+available metrics can be found [here](https://github.com/druid-io/druid/blob/master/extensions-contrib/graphite-emitter/src/main/resources/defaultWhiteListMap.json).
 
 ```yml
-druid_emitter_graphite_metric_whitelist: |
+druid_emitter_graphite_whitelist: |2+
   "jvm/gc": [],
   "jvm/mem": []
+```
+
+By default `druid_emitter_graphite_whitelist_dir` is set to:
+
+```yml
+druid_emitter_graphite_whitelist_dir:
+  "{{ druid_path }}conf/druid/_common/emitter/graphite"
+```
+
+The whitelist can then be referenced in the emitter this way:
+
+```yml
+druid_emitter_configuration:
+  graphite.eventConverter: '{"type":"whitelist", "mapPath":"{{ druid_emitter_graphite_whitelist_dir }}/whitelist.json"}'
 ```
 
 ### Middle manager log storage
